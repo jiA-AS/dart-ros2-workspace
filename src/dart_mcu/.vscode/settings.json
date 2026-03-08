@@ -3,13 +3,13 @@
     "cmake.buildDirectory": "${workspaceFolder}/build",
     "cmake.installPrefix": "${workspaceFolder}/build",
     "cmake.sourceDirectory": "${workspaceFolder}",
-    "cmake.generator": "MinGW Makefiles",
+    "cmake.generator": "Ninja",
     "cmake.buildBeforeRun": true,
     "cmake.clearOutputBeforeBuild": true,
     "cmake.configureSettings": {
         "CMAKE_TOOLCHAIN_FILE": "",
-        "CMAKE_C_COMPILER": "arm-none-eabi-gcc",
-        "CMAKE_CXX_COMPILER": "arm-none-eabi-g++",
+        "CMAKE_C_COMPILER": "D:/tools/arm-gnu-toolchain/14.3 rel1/bin/arm-none-eabi-gcc.exe",
+        "CMAKE_CXX_COMPILER": "D:/tools/arm-gnu-toolchain/14.3 rel1/bin/arm-none-eabi-g++.exe",
         "CMAKE_ASM_COMPILER": "arm-none-eabi-gcc",
         "CMAKE_OBJCOPY": "arm-none-eabi-objcopy",
         "CMAKE_OBJDUMP": "arm-none-eabi-objdump",
@@ -17,12 +17,15 @@
         "CMAKE_AR": "arm-none-eabi-ar"
     },
     "cmake.configureArgs": [
-        "-DCMAKE_COMMAND=cube-cmake"
+        "-DCMAKE_ASM_COMPILER=arm-none-eabi-gcc",
+        "-DCMAKE_OBJCOPY=arm-none-eabi-objcopy",
+        "-DCMAKE_OBJDUMP=arm-none-eabi-objdump",
+        "-DCMAKE_AR=arm-none-eabi-ar"
     ],
     "cmake.buildArgs": [
         "-j4"
     ],
-    "cmake.cmakePath": "cube-cmake",
+    "cmake.cmakePath": "cmake",
     "cmake.preferredGenerators": [
         "Ninja"
     ],
@@ -41,7 +44,7 @@
     "stm32cube-ide-clangd.path": "cube",
     "stm32cube-ide-clangd.arguments": [
         "starm-clangd",
-        "--query-driver=${env:CUBE_BUNDLE_PATH}/gnu-tools-for-stm32/14.3.1+st.2/bin/arm-none-eabi-gcc.exe",
-        "--query-driver=${env:CUBE_BUNDLE_PATH}/gnu-tools-for-stm32/14.3.1+st.2/bin/arm-none-eabi-g++.exe"
+        "--query-driver=D:/tools/arm-gnu-toolchain/14.3 rel1/bin/arm-none-eabi-gcc.exe",
+        "--query-driver=D:/tools/arm-gnu-toolchain/14.3 rel1/bin/arm-none-eabi-g++.exe"
     ]
 }

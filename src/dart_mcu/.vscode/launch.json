@@ -30,25 +30,41 @@
             "deviceName": "${command:st-stm32-ide-debug-launch.get-device-name}",
             "deviceCore": "${command:st-stm32-ide-debug-launch.get-core-name}",
             "deviceTrustzone": "TZ-disabled",
-            "serverExe": "T:/SDK/OPENOCD/xpack-openocd-0.12.0-7/bin/openocd.exe",
+            "serverExe": "openocd",
             "serverParameters": [
                 "-f",
-                "interface/cmsis-dap.cfg",
+                "${workspaceFolder}/stlink.cfg",
                 "-f",
                 "target/stm32f4x.cfg"
-            ], // 按需修改
+            ],
             "serverHost": "localhost",
-            "serverPort": "3333", // 默认为3333
+            "serverPort": "3333",
             "serverCwd": "",
             "runEntry": "main",
             "imagesAndSymbols": [
                 {
-                    "imageFileName": "${command:st-stm32-ide-debug-launch.get-projects-binary-from-context1}",
+                    "imageFileName": "${workspaceFolder}/build/dart_mcu.elf",
                     "imageOffset": "",
-                    "symbolFileName": "${command:st-stm32-ide-debug-launch.get-projects-binary-from-context1}",
+                    "symbolFileName": "${workspaceFolder}/build/dart_mcu.elf",
                     "symbolOffset": ""
                 }
             ]
+        },
+        {
+            "name": "Cortex Debug",
+            "cwd": "${workspaceRoot}",
+            "executable": "${workspaceFolder}/build/dart_mcu.elf",
+            "request": "launch",
+            "type": "cortex-debug",
+            "servertype": "openocd",
+            "device": "STM32F427II",
+            "configFiles": [
+                "${workspaceFolder}/stlink.cfg",
+                "target/stm32f4x.cfg"
+            ],
+            "svdFile": "${workspaceFolder}/Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f427xx.svd",
+            "runToEntryPoint": "main",
+            "gdbPath": "arm-none-eabi-gdb"
         }
     ]
 }

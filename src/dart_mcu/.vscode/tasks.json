@@ -6,18 +6,26 @@
             "type": "shell",
             "command": "cmake",
             "args": [
+                "-S",
+                "${workspaceFolder}",
                 "-B",
                 "${workspaceFolder}/build",
                 "-G",
-                "MinGW Makefiles",
-                "-DCMAKE_BUILD_TYPE=Debug"
+                "Ninja",
+                "-DCMAKE_BUILD_TYPE=Debug",
+                "-DCMAKE_C_COMPILER=D:/tools/arm-gnu-toolchain/14.3 rel1/bin/arm-none-eabi-gcc.exe",
+                "-DCMAKE_CXX_COMPILER=D:/tools/arm-gnu-toolchain/14.3 rel1/bin/arm-none-eabi-g++.exe",
+                "-DCMAKE_ASM_COMPILER=arm-none-eabi-gcc",
+                "-DCMAKE_OBJCOPY=arm-none-eabi-objcopy",
+                "-DCMAKE_OBJDUMP=arm-none-eabi-objdump",
+                "-DCMAKE_AR=arm-none-eabi-ar"
             ],
             "options": {
                 "cwd": "${workspaceFolder}"
             },
             "group": "build",
             "problemMatcher": [],
-            "detail": "Configure CMake project"
+            "detail": "Configure CMake project with Ninja generator"
         },
         {
             "label": "CMake: Build",
@@ -93,7 +101,7 @@
             "command": "openocd",
             "args": [
                 "-f",
-                "interface/stlink.cfg",
+                "${workspaceFolder}/stlink.cfg",
                 "-f",
                 "target/stm32f4x.cfg",
                 "-c",
@@ -105,6 +113,25 @@
             "group": "build",
             "problemMatcher": [],
             "detail": "Flash the firmware using OpenOCD"
+        },
+        {
+            "label": "OpenOCD: Flash BIN",
+            "type": "shell",
+            "command": "openocd",
+            "args": [
+                "-f",
+                "${workspaceFolder}/stlink.cfg",
+                "-f",
+                "target/stm32f4x.cfg",
+                "-c",
+                "program ${workspaceFolder}/build/dart_mcu.bin verify reset exit 0x08000000"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "group": "build",
+            "problemMatcher": [],
+            "detail": "Flash the BIN file using OpenOCD"
         }
     ]
 }
