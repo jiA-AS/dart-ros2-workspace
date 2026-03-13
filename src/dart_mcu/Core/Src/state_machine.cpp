@@ -240,6 +240,12 @@ void setNextStateByRemote(bool enterProtectIfDisconnected = true,
 /*这里很重要，到时候键位什么的*/
 void FSM::update()
 {
+    trigger_servo[7].enable();
+    trigger_servo[7].setAngle(80);
+    trigger_servo[7].setAngle(0);
+
+
+
     // 状态机更新
     openFSM_.update();
     micro_switch_read();

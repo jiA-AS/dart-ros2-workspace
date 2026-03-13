@@ -2,9 +2,7 @@
     "configurations": [
         {
             "name": "STM32",
-            "compileCommands": [
-                "${workspaceFolder}/build/compile_commands.json"
-            ],
+            "compileCommands": "${workspaceFolder}/build/compile_commands.json",
             "intelliSenseMode": "windows-gcc-arm",
             "compilerPath": "D:/tools/arm-gnu-toolchain/14.3 rel1/bin/arm-none-eabi-gcc.exe",
             "cStandard": "gnu11",

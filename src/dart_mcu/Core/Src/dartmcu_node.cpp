@@ -126,6 +126,10 @@ void microros_node_task(void)
     /*trigger_servo[7].begin(&htim5, TIM_CHANNEL_4, HAL_RCC_GetPCLK2Freq(), 500,
                            2500, 0, 270, 10000, 100,
                            CONFIG_SLIDE_SERVO_CUT_ANGLE);*///添加一个舵机
+    // 在dartmcu_node.cpp的microros_node_task函数中
+trigger_servo[7].begin(&htim5, TIM_CHANNEL_1, HAL_RCC_GetPCLK2Freq(), 500,
+                       2500, 0, 270, 10000, 50,
+                       CONFIG_SLIDE_SERVO_CUT_ANGLE);
 
     meter::velocity_meter.begin(
         &htim8, TIM_CHANNEL_1, &htim8, TIM_CHANNEL_2, 65536,
