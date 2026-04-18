@@ -26,6 +26,7 @@
 #include "sound_effect.h"
 #include "task.h"
 #include "velocimeter.h"
+#include "WS2812.h"
 
 namespace state_machine {
 constexpr float kPi = 3.14159265358979323846f;
@@ -158,6 +159,12 @@ constexpr float kWindmillStepDeg[4] = {-180.0f, -90.0f, 0.0f, 90.0f};
        ? E_Gate_State::CLOSED                                                  \
        : (RC_Data.Switch_Left == RC_SW_MID ? E_Gate_State::OPERATING           \
                                            : E_Gate_State::OPENED))
+#define OpenFan()do {                                                                         \
+    for(uint16_t i = 0; i < led::main_led_strip.get_num_pixels(); i++) {        \
+      led::main_led_strip.set_pixel_color(i, 0, 255, 0);                    \
+    }                                                                            \
+    led::main_led_strip.show();                                                  \
+  } while (0)
 
 #ifndef pdTICKS_TO_S
 #define pdTICKS_TO_S(xTicks) ((xTicks) / configTICK_RATE_HZ)
@@ -225,6 +232,7 @@ void FSM::update() {
   // 状态机更新
   openFSM_.update();
   micro_switch_read();//读限位开关
+  OpenFan();
       // 遥控看门狗
       static TickType_t last_reset_tick = xTaskGetTickCount();
   if (xTaskGetTickCount() - RC_Data.last_update_time > pdMS_TO_TICKS(1000) &&
