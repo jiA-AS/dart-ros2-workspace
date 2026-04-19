@@ -104,7 +104,7 @@ void microros_node_task(void)
                              HAL_RCC_GetPCLK2Freq());
     pneumatic::begin();
     LED::led_flow.begin();
-    led::begin(); 
+    //led::begin(); 
     trigger_servo[0].begin(&htim4, TIM_CHANNEL_1, HAL_RCC_GetPCLK2Freq(), 500,
                            2500, 0, 180, 10000, 100,
                            CONFIG_TRIGGER_SERVO_RELOAD_ANGLE_0);

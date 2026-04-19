@@ -232,7 +232,7 @@ void FSM::update() {
   // 状态机更新
   openFSM_.update();
   micro_switch_read();//读限位开关
-  OpenFan();
+  //OpenFan();
       // 遥控看门狗
       static TickType_t last_reset_tick = xTaskGetTickCount();
   if (xTaskGetTickCount() - RC_Data.last_update_time > pdMS_TO_TICKS(1000) &&

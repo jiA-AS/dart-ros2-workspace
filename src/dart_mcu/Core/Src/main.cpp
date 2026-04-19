@@ -85,6 +85,7 @@ int main(void)
     /* Reset of all peripherals, Initializes the Flash interface and the
      * Systick. */
 
+
      HAL_Init();
 
     /* USER CODE BEGIN Init */
@@ -108,7 +109,7 @@ int main(void)
     MX_GPIO_Init();
     MX_DMA_Init();
     MX_TIM12_Init();
-    MX_TIM3_Init();
+   // MX_TIM3_Init();
     MX_TIM6_Init();
     MX_CAN1_Init();
     MX_CAN2_Init();
@@ -144,7 +145,7 @@ int main(void)
                                  REFEREE_UART_BUFFER_LENGTH);
     HAL_UARTEx_ReceiveToIdle_DMA(RC_UART_HANDLE, RC_UART_RXBUFFER,
                                  RC_UART_BUFFER_LENGTH);
-    led::begin();                          
+    //led::begin();                          
     /* USER CODE END 2 */
 
     /* Init scheduler */
